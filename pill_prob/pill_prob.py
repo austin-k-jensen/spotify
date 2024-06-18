@@ -3,8 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def draw_pills(start_num: int = 30, results: np.array = None):
-    whole = start_num
+def draw_pills(
+    pills: int = 30,
+    results: np.array = None,
+):
+    whole = pills
     cut = 0
     total = whole + cut
     draw_num = 0
@@ -25,13 +28,16 @@ def draw_pills(start_num: int = 30, results: np.array = None):
         # print(draw_num, total, whole, cut, cut_prob)
 
 
-def pill_prob(runs: int = 10000, start_num: int = 100):
+def pill_prob(
+    runs: int = 1000,
+    pills: int = 30,
+):
 
-    results = np.zeros((runs, start_num * 2))
+    results = np.zeros((runs, pills * 2))
     run = 0
 
     while run < runs:
-        draw_pills(start_num=start_num, results=results[run])
+        draw_pills(pills=pills, results=results[run])
         run += 1
 
     output = np.mean(results, axis=0)
@@ -41,4 +47,7 @@ def pill_prob(runs: int = 10000, start_num: int = 100):
     #
 
 
-pill_prob()
+pill_prob(
+    runs=10000,
+    pills=50,
+)
